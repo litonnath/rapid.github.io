@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="CodePel">
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+
+<style>
+
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+*{ margin: 0; padding: 0;}
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+    
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-smoothing: antialiased;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background: #eee;
+}
+.cd__intro{
+   padding: 60px 30px;
+   margin-bottom: 15px;
+        flex-direction: column;
+
+}
+.cd__intro,
+.cd__credit{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.cd__intro h1 {
+   font-size: 18pt;
+   padding-bottom: 15px;
+
+}
+.cd__intro p{
+   font-size: 14px;
+}
+
+.cd__action{
+   text-align: center;
+   display: block;
+   margin-top: 20px;
+}
+
+.cd__action a.cd__btn {
+  text-decoration: none;
+  color: #666;
+   border: 2px solid #666;
+   padding: 10px 15px;
+   display: inline-block;
+   margin-left: 5px;
+}
+.cd__action a.cd__btn:hover{
+   background: #666;
+   color: #fff;
+    transition: .3s;
+-webkit-transition: .3s;
+}
+.cd__action .cd__btn:before{
+  font-family: FontAwesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.down:before{content: "\f019"}
+.back:before{content:"\f112"}
+
+.cd__credit{
+    padding: 12px;
+    font-size: 9pt;
+    margin-top: 40px;
+
+}
+.cd__credit span:before{
+   font-family: FontAwesome;
+   color: #e41b17;
+   content: "\f004";
+
+
+}
+.cd__credit a{
+   color: #333;
+   text-decoration: none;
+}
+.cd__credit a:hover{
+   color: #1DBF73; 
+}
+.cd__credit a:hover:after{
+    font-family: FontAwesome;
+    content: "\f08e";
+    font-size: 9pt;
+    position: absolute;
+    margin: 3px;
+}
+.cd__main{
+  background: #fff;
+  padding: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+.cd__main{
+    display: flex;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1360px){
+    .cd__main{
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto; 
+      padding: 24px;
+    }
+}
+
+</style>
+<style>
+.cd__main{
+background: #1c92d2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f2fcfe, #1c92d2) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* ————————————————————–
+  Tree core styles
+*/
+.tree { margin: 1em; }
+
+.tree input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  }
+
+.tree input ~ ul { display: none; }
+
+.tree input:checked ~ ul { display: block; }
+
+/* ————————————————————–
+  Tree rows
+*/
+.tree li {
+  line-height: 1.2;
+  position: relative;
+  padding: 0 0 1em 1em;
+  }
+
+.tree ul li { padding: 1em 0 0 1em; }
+
+.tree > li:last-child { padding-bottom: 0; }
+
+/* ————————————————————–
+  Tree labels
+*/
+.tree_label {
+  position: relative;
+  display: inline-block;
+ 
+  }
+
+label.tree_label { cursor: pointer; }
+
+label.tree_label:hover { color: #666; }
+
+/* ————————————————————–
+  Tree expanded icon
+*/
+label.tree_label:before {
+  background: #000;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  float: left;
+  margin: 0 1em 0 -2em;
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  content: '+';
+  text-align: center;
+  line-height: .9em;
+  }
+
+:checked ~ label.tree_label:before { content: '–'; }
+
+/* ————————————————————–
+  Tree branches
+*/
+.tree li:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -.5em;
+  display: block;
+  width: 0;
+  border-left: 1px solid #777;
+  content: "";
+  }
+
+.tree_label:after {
+  position: absolute;
+  top: 0;
+  left: -1.5em;
+  display: block;
+  height: 0.5em;
+  width: 1em;
+  border-bottom: 1px solid #777;
+  border-left: 1px solid #777;
+  border-radius: 0 0 0 .3em;
+  content: '';
+  }
+
+label.tree_label:after { border-bottom: 0; }
+
+:checked ~ label.tree_label:after {
+  border-radius: 0 .3em 0 0;
+  border-top: 1px solid #777;
+  border-right: 1px solid #777;
+  border-bottom: 0;
+  border-left: 0;
+  bottom: 0;
+  top: 0.5em;
+  height: auto;
+  }
+
+.tree li:last-child:before {
+  height: 1em;
+  bottom: auto;
+  }
+
+.tree > li:last-child:before { display: none; }
+
+.tree_custom {
+  display: block;
+  background: #eee;
+  padding: 1em;
+  border-radius: 0.3em;
+}
+
+.heading {
+
+font-size : 20px;
+font-weight: 900;
+}
+
+.heading_in{
+font-size : 12px;
+color:black;
+
+}
+
+
+
+</style>
+
+   </head>
+   <body>
+      
+      <main class="cd__main">
+         
+         <ul class="tree">
+   <li>
+
+    <input type="checkbox" id="c1" />
+<a class="heading">
+    <label class="tree_label" for="c1">CLASSIFICATION DATA</strong></label></a>
+    <ul>
+      <li>
+        <input type="checkbox" id="c2" />
+       
+        <label for="c2" class="tree_label">VALUE CHAIN</label>
+        <ul>
+
+         <a class="heading_in" href="https://staging.evos.ai/taxonomy/create">
+          <li> <span class="tree_label" >CREATE A VALUE CHAIN</span></li></a>
+
+        </ul>
+        <ul>
+            <a class="heading_in" href="https://staging.evos.ai/taxonomy">
+          <li><span class="tree_label">VIEW OR EDIT</span></li></a>
+        </ul>
+      </li>
+      <li>
+        <input type="checkbox" id="c3" />
+         
+        <label for="c3" class="tree_label">ANATOMY OF TECHNOLOGY</label>
+        <ul>
+         <a class="heading_in" href="https://staging.evos.ai/taxonomy/anatomyValuechain">
+          <li><span class="tree_label">ANATOMY OF VALUE CHAIN</span></li></a>
+         </ul> 
+
+        <ul>
+          <a class="heading_in" href="https://staging.evos.ai/taxonomy/anatomy/search">
+        <li><span class="tree_label">ANATOMY SEARCH </span></li></a>
+         </ul>
+     
+        
+          <ul>
+<a class="heading_in" href="https://staging.evos.ai/taxonomy/anatomy">
+          <li><span class="tree_label">VIEW OR EDIT</span></li></a>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  
+  
+  <li>
+    <input type="checkbox" id="c5" />
+<a class="heading">
+    <label class="tree_label" for="c5">EVIDENCE</label>
+</a>
+    <ul>
+      <li>
+        <input type="checkbox" id="c6" />
+        <label for="c6" class="tree_label">MARKETS</label>
+        <ul>
+         
+          <li>
+           <!-- C23 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c23" />
+            
+            <label for="c23" class="tree_label">ADD NEW MARKET</label>
+            <ul>
+          <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">ASSESSMENT DETAILS</span></li>
+</a>
+            </ul>
+            <ul>
+            <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">VALUE CHAIN</span></li></a>
+            </ul>
+            <ul>
+              <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">ANATOMY OF TECHNOLOGY</span></li>
+            </a></ul>
+            <ul>
+              <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">ENTTITIES IN THE MARKET</span></li>
+            </a></ul>
+            <ul>
+               <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">REGIONAL MARKET</span></li></a>
+            </ul>
+            <ul>
+              <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">RELATED MARKET</span></li></a>
+            </ul>
+            <ul>
+               <a class="heading_in" href="https://staging.evos.ai/markets/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul>
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/markets">VIEW OR EDIT MARKET</a></span></li>
+        </ul>
+       <ul>
+          <li>
+           <!-- C24 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c24" />
+            <label for="c24" class="tree_label">ADD MARKET EVIDENCE</label>
+            <ul>
+              <a class="heading_in" href="https://staging.evos.ai/marketevidence/create">
+              <li><span class="tree_label">ADD MARKET EVIDENCE</span></li></a>
+            </ul>
+            <ul>
+           <a class="heading_in" href="https://staging.evos.ai/marketevidence/create">
+              <li><span class="tree_label">SECTION 3.2 CONSUMER DEMAND INDICATORS</span></li></a>
+            </ul>
+            <ul>
+          <a class="heading_in" href="https://staging.evos.ai/marketevidence/create">
+              <li><span class="tree_label">SECTION 3.3 ADOPTION ACTIVITY</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/marketevidence/create">
+              <li><span class="tree_label">SECTION 3.4 BUSINESS MODEL</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/marketevidence/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+     
+          </li>
+        </ul>
+
+          <ul>
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/marketevidence">VIEW OR EDIT EVIDENCE</a></span></li>
+        </ul>
+      </li>
+      <li>
+        <input type="checkbox" id="c7" />
+        <label for="c7" class="tree_label">INDUSTRIES</label>
+        <ul>
+          
+          <li>
+           <!-- C25 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c25" />
+            <label for="c25" class="tree_label">ADD NEW</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/industries/create">
+              <li><span class="tree_label">INDUSTRIAL DETAILS</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/industries/create">
+              <li><span class="tree_label">VALUE CHAIN CLASSIFICATION</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/industries/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+      
+          </li>
+           <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/industries">VIEW OR EDIT</a></span></li>
+           
+        </ul>
+      </li>
+
+<li>
+        <input type="checkbox" id="c9" />
+
+        <label for="c9" class="tree_label">ORGANIZATIONS</label>
+        <ul>
+        <li>
+           <!-- C26 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c26" />
+            <label for="c26" class="tree_label">ADD NEW</label>
+            <ul>
+              <a class="heading_in" href="https://staging.evos.ai/organizations/create">
+              <li><span class="tree_label">ORGANIZATION PROFILE</span></li></a>
+            </ul>
+            <ul>
+          <a class="heading_in" href="https://staging.evos.ai/organizations/create">
+              <li><span class="tree_label">PUBLIC TRADING INFORMATION</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/organizations/create">
+              <li><span class="tree_label">COMPANY RELATIONSHIPS</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/organizations/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+      
+          </li>
+
+
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/organizations">VIEW OR EDIT</a></span></li>
+        </ul>
+      </li>
+
+<li>
+        <input type="checkbox" id="c11" />
+        <label for="c11" class="tree_label">PRODUCTS OR SERVICE</label>
+        <ul>
+         <li>
+           <!-- C27 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c27" />
+            <label for="c27" class="tree_label">ADD NEW</label>
+            <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">PRODUCT,SERVICE,R&D EFFORT</span></li></a>
+            </ul>
+            <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">VALUE CHAIN</span></li></a>
+            </ul>
+            <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">ANATOMY OF TECHNOLOGY</span></li></a>
+            </ul>
+           <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">TECHNICAL DOCUMENTATION</span></li></a>
+            </ul>
+            <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">TECHNICAL EVIDENCE</span></li></a>
+            </ul>
+        <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">MARKET DOCUMENTATION</span></li></a>
+            </ul>
+        <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">MARKET EVIDENCE</span></li></a>
+            </ul>
+
+  <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">INTELLECTUAL PROPERTY DETAILS</span></li></a>
+
+            </ul>
+
+  <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">INTELLECTUAL PROPERTY EVIDENCE</span></li></a>
+
+            </ul>
+  <ul>
+ <a class="heading_in" href="https://staging.evos.ai/serviceorproduct/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+
+            </ul>
+          </li>
+         <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/serviceorproduct">VIEW OR EDIT</a></span></li>
+        </ul>
+      </li>
+
+<li>
+        <input type="checkbox" id="c13" />
+        <label for="c13" class="tree_label">TECHNOLOGY</label>
+        <ul>
+       
+
+          <li>
+           <!-- C28 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c28" />
+            <label for="c28" class="tree_label">ADD NEW</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/technology/create">
+              <li><span class="tree_label">ASSESSMENT DETAILS</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/technology/create">
+              <li><span class="tree_label">VALUE CHAIN CLASSIFICATION</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/technology/create">
+              <li><span class="tree_label">ANATOMY OF TECHNOLOGY</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/technology/create">
+              <li><span class="tree_label">EVIDENCE</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/technology/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+      
+          </li>
+
+         <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/technology">VIEW OR EDIT</a></span></li>
+        </ul>
+      </li>
+
+
+    </ul>
+  </li>
+
+
+  <li>
+    <input type="checkbox" id="c15" />
+<a class="heading">
+    <label class="tree_label" for="c15">INTELLECTUAL PROPERTY</label>
+</a>
+    <ul>
+      <li>
+        <input type="checkbox" id="c16" />
+        <label for="c16" class="tree_label">PATENTS</label>
+        <ul>
+          
+          <li>
+           <!-- C29 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c29" />
+            <label for="c29" class="tree_label">ADD NEW</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">ASSESSMENT DETAILS</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">VALUE CHAIN</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">COMPANY INTELLECTUAL PROPERTY</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">PARTNER INTELLECTUAL PROPERTY</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">INDICATION OF PATENT IP IN THE PUBLIC DOMAIN</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">INDICATION OF NON-PATENT IP IN THE PUBLIC DOMAIN</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">PATENT ANALYTICS DETAILS</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">SPECIFICATION</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">PRODUCT ALIGNMENT</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">CLAIM CHART</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/patents/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+      
+          </li>
+
+
+        </ul>
+        <ul>
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/patents">VIEW OR EDIT</a></span></li>
+        </ul>
+      </li>
+      <li>
+        <input type="checkbox" id="c17" />
+        <label for="c17" class="tree_label">NON-PATENT LITERATURE</label>
+        <ul>
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/nonpatents/create">ADD NEW</a></span></li>
+        </ul>
+        <ul>
+          <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/nonpatents">VIEW OR EDIT</a></span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+
+
+
+<li>
+    <input type="checkbox" id="c18" />
+<a class="heading">
+    <label class="tree_label" for="c18">REPORTS</label>
+</a>
+    <ul>
+        <li>
+            <input type="checkbox" id="c19" />
+            <label for="c19" class="tree_label">REPORT BUILDER</label>
+            <ul>
+                <li>
+           <!-- C30 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c30" />
+            <label for="c30" class="tree_label">REPORT TYPE</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">VALUE CHAIN</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">REPORT SECTIONS</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">TECHNICAL ANALYSIS</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">IP ANALYSIS</span></li></a>
+            </ul>
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">MARKET ANALYSIS</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">COMPETITOR ANALYSIS</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/reports/competitive-landscape/create">
+              <li><span class="tree_label">OVER ALL PREVIEW</span></li></a>
+            </ul>
+      
+          </li>
+            </ul>
+<ul>
+                <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/reports/index">VIEW ALL</a></span></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox" id="c20" />
+            <label for="c20" class="tree_label">PROJECTS</label>
+            <ul>
+               <li>
+           <!-- C31 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c31" />
+            <label for="c31" class="tree_label">ADD NEW</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">PROJECT</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">VALUE CHAIN CLASSIFICATION</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">ANATOMY OF TECHNOLOGY</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">PROJECT SUMMARY</span></li></a>
+            </ul>
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">DOCUMENTATION</span></li></a>
+            </ul>
+
+<ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">PROJECT MEMBERS</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">IMPACT</span></li></a>
+            </ul>
+ <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">TECHNICAL COMPONENT</span></li></a>
+            </ul>
+       <ul>
+<a class="heading_in" href="https://staging.evos.ai/projects/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+            </ul>
+          </li>
+              
+               <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/projects">VIEW OR EDIT</a></span></li></a>
+            </ul>
+        </li>
+
+<li>
+            <input type="checkbox" id="c22" />
+            <label for="c22" class="tree_label">CLIENTS</label>
+            <ul>
+               
+<li>
+           <!-- C32 IS AFTER THE END OF THE UL COMPLETED , SO THAT'S WHY I MADE THIS CHANGES IN THIS -->
+            <input type="checkbox" id="c32" />
+            <label for="c32" class="tree_label">ADD NEW</label>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/clients/create">
+              <li><span class="tree_label">CLIENT INFORMATION</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/clients/create">
+              <li><span class="tree_label">MAIN POINT OF CONTACT</span></li></a>
+            </ul>
+            <ul>
+<a class="heading_in" href="https://staging.evos.ai/clients/create">
+              <li><span class="tree_label">BILLING POINT OF CONTACT</span></li></a>
+            </ul>
+           <ul>
+<a class="heading_in" href="https://staging.evos.ai/clients/create">
+              <li><span class="tree_label">COMPLETED</span></li></a>
+
+          </li>
+            </ul>
+ <li><span class="tree_label"><a style="color:black;text-decoration: none;" href="https://staging.evos.ai/clients">VIEW OR EDIT</a></span></li></a>
+    </ul>
+</li>  
+</ul>
+         <!-- END EDMO HTML (Happy Coding!)-->
+      </main>
+      
+      
+      <!-- Script JS -->
+      <script src="./js/script.js"></script>
+      <!--$%analytics%$-->
+   </body>
+</html>
